@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
+
+/*
+ * Design tokens của Nếp — xem docs/DESIGN_SYSTEM.md
+ * Nền giấy ấm, chữ mực, màu nhấn xanh chàm (nhuộm chàm truyền thống), đỏ son cho giá giảm.
+ */
+@theme {
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces Variable', 'Fraunces', ui-serif, Georgia, serif;
+
+  --color-paper: #f5f1ea;
+  --color-paper-2: #ece6dc;
+  --color-surface: #ffffff;
+  --color-ink: #1b1a17;
+  --color-ink-2: #3d3a34;
+  --color-muted: #6f6a61;
+  --color-subtle: #9a948a;
+  --color-line: #e2dbcf;
+  --color-line-strong: #c9c0b1;
+
+  --color-cham: #24357a;
+  --color-cham-600: #1c2a63;
+  --color-cham-300: #8d9bd6;
+  --color-cham-50: #eceef7;
+
+  --color-son: #c2352b;
+  --color-son-50: #fbecea;
+  --color-la: #2f7d4f;
+  --color-la-50: #e7f3ec;
+  --color-nghe: #d9a21b;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-fade-in: fade-in 0.2s ease-out both;
+  --animate-slide-up: slide-up 0.28s var(--ease-out-soft) both;
+  --animate-slide-in-right: slide-in-right 0.32s var(--ease-out-soft) both;
+  --animate-slide-in-left: slide-in-left 0.32s var(--ease-out-soft) both;
+  --animate-drop: drop 0.22s var(--ease-out-soft) both;
+  --animate-marquee: marquee 38s linear infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: none; }
+}
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-sans text-[14px] leading-relaxed text-ink antialiased;
+    font-feature-settings: 'ss01';
+  }
+  ::selection {
+    @apply bg-cham text-paper;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cham);
+    outline-offset: 2px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  img {
+    @apply select-none;
+  }
+  input[type='search']::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Tiêu đề hiển thị: serif Fraunces, nét mảnh-đậm tương phản */
+  .ds-display {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    @apply text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em];
+  }
+  .ds-h1 {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 120, 'SOFT' 30;
+    @apply text-[clamp(2rem,4.2vw,3.25rem)] leading-[1.02] font-medium tracking-[-0.015em];
+  }
+  .ds-h2 {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 72;
+    @apply text-[clamp(1.5rem,2.6vw,2.125rem)] leading-tight font-medium tracking-[-0.01em];
+  }
+  .ds-h3 {
+    @apply text-lg leading-snug font-semibold;
+  }
+  /* Nhãn nhỏ in hoa giãn chữ — dùng cho tiêu đề mục, nút, menu */
+  .ds-label {
+    @apply text-2xs font-semibold tracking-[0.12em] uppercase;
+  }
+  .ds-eyebrow {
+    @apply text-xs font-medium tracking-[0.14em] text-muted uppercase;
+  }
+  .ds-link {
+    @apply underline decoration-1 underline-offset-[3px] transition-colors hover:text-cham;
+  }
+  .ds-container {
+    @apply mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-10;
+  }
+  /* Nếp gấp góc — chữ ký hình ảnh của thương hiệu */
+  .ds-fold {
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+  .ds-scrollbar-none {
+    scrollbar-width: none;
+  }
+  .ds-scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .ds-skeleton {
+    @apply animate-pulse bg-paper-2;
+  }
+}
+
+/* Leaflet: đồng bộ với giao diện */
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: var(--color-paper-2);
+}
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+.nep-pin {
+  background: transparent;
+  border: 0;
+}
