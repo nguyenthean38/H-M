@@ -4,7 +4,7 @@
 
 > ⚠️ Đây là **sản phẩm demo giao diện** do [Ntahien Tech](https://ntahientech.com) thiết kế và lập trình. Thương hiệu, sản phẩm, giá, cửa hàng, đơn hàng và đánh giá đều là **dữ liệu mô phỏng**; không có giao dịch thật nào được xử lý. Ảnh minh hoạ thuộc giấy phép CC0 (xem [docs/IMAGE_CREDITS.md](docs/IMAGE_CREDITS.md)).
 
-🔗 **Demo:** _(sẽ cập nhật sau khi triển khai Vercel)_ — tài khoản demo **lan@example.com / Nep12345**, mã giảm giá **NEPMOI**, thẻ thử **4242 4242 4242 4242**.
+🔗 **Demo:** https://hms-beryl-rho.vercel.app — tài khoản demo **lan@example.com / Nep12345**, mã giảm giá **NEPMOI**, thẻ thử **4242 4242 4242 4242**.
 
 ![Trang chủ](docs/screenshots/01-trang-chu.jpg)
 
